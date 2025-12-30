@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables for theming */
+:root {
+  --color-primary: #10b981;
+  --color-primary-hover: #059669;
+  --color-secondary: #6366f1;
+  --color-secondary-hover: #4f46e5;
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-hover: #334155;
+  --color-text: #f8fafc;
+  --color-text-muted: #94a3b8;
+  --color-card-red: #ef4444;
+  --color-card-black: #1e293b;
+}
+
+/* Global resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+/* Card styling utilities */
+.card-suit-red {
+  color: var(--color-card-red);
+}
+
+.card-suit-black {
+  color: var(--color-card-black);
+}
+
+/* Glass effect for cards and panels */
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg;
+  }
+
+  .glass-panel {
+    @apply bg-slate-800/60 backdrop-blur-md border border-slate-700/50 rounded-2xl;
+  }
+
+  .player-spot {
+    @apply bg-slate-800/80 backdrop-blur-sm border-2 border-slate-600/50 rounded-2xl p-4 transition-all duration-300;
+  }
+}
+
+/* Poker table felt texture */
+.poker-table {
+  background: radial-gradient(ellipse at center, #166534 0%, #15803d 40%, #14532d 100%);
+  border: 12px solid #78350f;
+  box-shadow:
+    inset 0 0 60px rgba(0, 0, 0, 0.4),
+    0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Player spot styling */
+.player-spot:hover {
+  @apply border-emerald-500/50;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.1);
+}
+
+/* Playing card styling */
+.playing-card {
+  width: 60px;
+  height: 84px;
+  border-radius: 8px;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.playing-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.playing-card-back {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #1e40af 100%);
+  background-size: 400% 400%;
+  animation: shimmer 3s ease infinite;
+}
+
+@keyframes shimmer {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Card container with overlap */
+.card-hand {
+  display: flex;
+  position: relative;
+}
+
+.card-hand .playing-card {
+  margin-left: -25px;
+}
+
+.card-hand .playing-card:first-child {
+  margin-left: 0;
+}
